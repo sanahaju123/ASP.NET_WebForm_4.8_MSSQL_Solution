@@ -20,31 +20,29 @@ namespace TaskManagementApp.DAL.Services
             return _context.TaskModels.FirstOrDefault(t => t.Id == id);
         }
 
-        public List<Model.TaskModel> GetAll()
+        public string GetAll()
         {
-            return _context.TaskModels.ToList();
+            string qry = "select* from TaskModels";
+            return qry;
         }
 
-        public void Add(Model.TaskModel task)
+        public string Add()
         {
-            _context.TaskModels.Add(task);
-            _context.SaveChanges();
+            string qry = "insert into TaskModels(Title, IsCompleted, DueDate)" +
+                "values('";
+            return qry;
         }
 
-        public void Update(Model.TaskModel task)
+        public string Update()
         {
-            _context.Entry(task).State = EntityState.Modified;
-            _context.SaveChanges();
+            var query = "update TaskModels set Title='";
+            return query;
         }
 
-        public void Delete(int id)
+        public string Delete()
         {
-            var task = GetById(id);
-            if (task != null)
-            {
-                _context.TaskModels.Remove(task);
-                _context.SaveChanges();
-            }
+            var query = "delete from TaskModels where Id='";
+            return query;
         }
     }
 }
